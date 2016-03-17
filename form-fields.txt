@@ -1,0 +1,53 @@
+Form 1 Fields
+
+Name					Textbox
+Fathers / Husband Name	Textbox
+Surname					Textbox
+Gender					Radio		Male/Female
+Date OF Birth			Calendar
+Relation				Select 		Father/Mother/Sister/Brother/Daughter/Son/Other	
+*This field will not be there if the person is Main Member 	
+Marital Status			Select 		Single/Married/Divorced
+Education				Select 		Make Table for this and fetch Information from there
+Blood Group				Select 		Get All blood Groups
+Occupation				Select 		Business / Job
+Annual Income			Textbox
+Home Status				Select 		Owned / Rented
+Agriculture Land		Textbox
+House Number			Textbox
+Society					Textbox
+Area 					Textbox
+State					Select 		Get states information from table state
+City/Village			Select		Get City Information from the table
+Takula					Select		Get Taluka information from the table
+Native Place			Select 		Same as City/Village
+Pin Code 				Textbox
+Email					Textbox
+Mobile Number			Textbox
+
+Form 2
+
+Boy/Girl Name			Textbox
+Father's Name			Textbox
+Mother's Name			Textbox
+Birth Date 				Calendar
+Birth Place				Textbox
+Birth Time 				Textbox ( Hour and Minute Format )
+Zodiac Sign				Select ( Get all Zodiac Sign info )
+Color
+Height
+Weight
+Education				Select 		Get all the Education from table
+Occupation				Select 		Job / Business
+Annual Income
+Position
+Private Company Name		Textbox
+Government Department Name	Textbox
+Job Status				Select 		Permanent / Temporary
+Since When				Textbox
+Native Place
+MAMA's information		Textarea
+Current Address 		Textarea
+E-mail Address 			Textbox
+Hobbies					Textarea
+Other Information		Textarea 

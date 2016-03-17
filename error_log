@@ -1,0 +1,2 @@
+[20-Feb-2016 05:15:45 Etc/GMT] PHP Fatal error:  Call to a member function get() on a non-object in /home/flyinzse/public_html/mahyavanshidiary/application/models/Mdl_state.php on line 7
+[20-Feb-2016 05:21:35 Etc/GMT] PHP Fatal error:  Call to a member function get() on a non-object in /home/flyinzse/public_html/mahyavanshidiary/application/models/Mdl_state.php on line 7

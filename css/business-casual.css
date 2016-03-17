@@ -1,0 +1,300 @@
+/*!
+ * Start Bootstrap - Business Casual Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+html{
+    background: url('../img/bg.jpg')  repeat #e6e6e6;
+        
+}
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    background: url('../img/bg_1.jpg') repeat-x top;
+ 
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-transform: uppercase;
+    font-family: "Josefin Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+p ,a{
+    font-size: 1.25em;
+    line-height: 1.6;
+    color: #000;
+}
+
+hr {
+    max-width: 400px;
+    border-color: #999999;
+}
+
+.brand,
+.address-bar {
+    display: none;
+}
+
+.navbar-brand {
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.navbar-nav {
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 3px;
+}
+
+.img-full {
+    min-width: 100%;
+}
+
+.brand-before,
+.brand-name {
+    text-transform: capitalize;
+}
+
+.brand-before {
+    margin: 15px 0;
+}
+
+.brand-name {
+    margin: 0;
+    font-size: 4em;
+}
+
+.tagline-divider {
+    margin: 15px auto 3px;
+    max-width: 250px;
+    border-color: #999999;
+}
+
+.box {
+    margin-bottom: 20px;
+    padding: 30px 15px;
+    background: #fff;
+    background: rgba(255,255,255,0.9);
+}
+
+.intro-text {
+    text-transform: uppercase;
+    font-size: 1.25em;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.img-border {
+    float: none;
+    margin: 0 auto 0;
+    border: #999999 solid 1px;
+}
+
+.img-left {
+    float: none;
+    margin: 0 auto 0;
+}
+
+footer {
+    background: #fff;
+    background: rgba(255,255,255,0.9);
+}
+
+footer p {
+    margin: 0;
+    padding: 50px 0;
+}
+.form-control,.btn{
+    height: 45px;
+        border: 1px solid #ccc;
+        border-radius: 0;
+            margin-bottom: 10px;
+}
+.margin-bottom-15{
+    margin-bottom: 15px;
+}
+.row.footer ul {
+    margin-top: 25px;
+}
+.row.footer ul li {
+    margin-bottom: 10px;
+}
+ul.social-med li {
+    display: inline-block;
+    padding: 0 0 0 10px;
+}
+.nav>li.active a,.navbar-default .navbar-nav>li>a:hover{
+        background-color: #C1C1C1;
+            border-bottom: 2px solid #C3BFBF;
+}
+.register-wrapper{
+    background-image: url(../img/slide_3.png);
+        background-size: cover
+}
+.bg-transpernt{
+    background-color: rgba(255,255,255,0.7);
+}
+.has-error .form-control,.has-success .form-control{
+        border-width: 2px;
+}
+.error{
+    color: #a94442 !important;
+}
+.checkbox > label:first-child {
+    padding-left: 0;
+}
+.panel-default>.panel-heading {
+    color: #ca7700;
+    background-color: #f6f3ec;
+    border-color: rgb(199, 168, 122);
+}
+.panel-default {
+   border-color: rgb(199, 168, 122);
+}
+.orange-bg{
+    background: #f6f3ec;
+}
+.user_search_info{
+    
+    color: #ca7700;
+    padding: 10px 0 10px 3%;
+    margin: 0 0 10px 0;
+    font-weight: normal;
+    background-color: #f6f3ec;
+    border: 1px #ede7d8 solid;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -khtml-border-radius: 8px;
+
+    
+}
+.user_search_info p{
+    margin-bottom: 0;
+    color: #ca7700;
+}
+.search-result-wrapper {
+    display: table;
+}
+.search-result-wrapper > div {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 15px;
+}
+button, html input[type=button], input[type=reset], input[type=submit] {
+    -webkit-appearance: button;
+    cursor: pointer;
+    background-color: #d19c1c;
+    border: 1px #d19c1c solid;
+    color: #000;
+}
+.search-block-about-user p span {
+    display: inline-block;
+    width: 160px;
+    vertical-align: top;
+    word-wrap: break-word;
+    white-space: pre-line;
+    overflow: hidden;
+    font-size: 12px;
+}
+span.about-user-left {
+    text-align: right;
+    padding-right: 10px;
+}
+.search_main {
+    margin-bottom: 30px;
+}
+@media screen and (min-width:768px) {
+    .brand {
+        display: inherit;
+        margin: 0;
+        padding: 60px 0 10px;
+        text-align: center;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        font-family: "Josefin Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 5em;
+        font-weight: 700;
+        line-height: normal;
+        color: #fff;
+    }
+
+    .top-divider {
+        margin-top: 0;
+    }
+
+    .img-left {
+        float: left;
+        margin-right: 25px;
+    }
+
+    .address-bar {
+        display: inherit;
+        margin: 0;
+        padding: 0 0 40px;
+        text-align: center;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        text-transform: uppercase;
+        font-size: 1.25em;
+        font-weight: 400;
+        letter-spacing: 3px;
+        color: #fff;
+    }
+
+    .navbar {
+        border-radius: 0;
+    }
+
+    .navbar-header {
+        display: none;
+    }
+
+    .navbar {
+        min-height: 0;
+    }
+
+    .navbar-default {
+        border: none;
+        background: #fff;
+        background: rgba(255,255,255,0.9);
+    }
+
+    .nav>li>a {
+        padding: 35px;
+    }
+
+    .navbar-nav>li>a {
+        line-height: normal;
+    }
+
+    .navbar-nav {
+        display: table;
+        float: none;
+        margin: 0 auto;
+        table-layout: fixed;
+        font-size: 1.25em;
+    }
+}
+
+@media screen and (min-width:1200px) {
+    .box:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+@media screen and(max-width: 767px){
+    .brand-name{
+        font-size: 2.3em;
+        word-wrap: break-word;
+    }
+}
+.carousel-indicators .active{ background: #333; } .content{ margin-top:20px; } .adjust1{ float:left; width:100%; margin-bottom:0; } .adjust2{ margin:0; } .carousel-indicators li{ border :1px solid #ccc; } .carousel-control{ color:#333; width:5%; } .carousel-control:hover, .carousel-control:focus{ color:#31708f; } .carousel-control.left, .carousel-control.right { background-image: none; } .media-object{ margin:auto; margin-top:15%; } @media screen and (max-width: 768px) { .media-object{ margin-top:0; } }
+ul{
+    list-style-type: none;
+}
