@@ -32,7 +32,7 @@ $(document).ready(function(){
 	});
 	$("#education_status").change(function(){
 		var val=$(this).val();
-		if(val=="Studing")
+		if(val=="Studying")
 			$("#current_education_status").show();
 		else
 			$("#current_education_status").hide();
@@ -287,7 +287,7 @@ $(document).ready(function(){
 							<label for="education">Education Status</label>
 							<select class="form-control" id="education_status" name="education_status" aria-required="true" aria-invalid="true">
 								<option selected="" value="">--Education Status--</option>
-								<option value="Studing">Studding</option>
+								<option value="Studying">Studying</option>
 								<option value="Completed">Completed</option>	
 							</select>
 							<input type="text" value="" class="form-control" id="current_education_status" name="current_education_status" placeholder="Enter current year & semester" style="display: none;">

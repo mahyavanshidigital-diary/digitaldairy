@@ -30,7 +30,7 @@ $(document).ready(function(){
 		var val=$(this).val();
 					var id=$(this).attr('data-id');
 				   
-		if(val=="Studing")
+		if(val=="Studying")
 			$("#current_education_status"+id).show();
 		else
 			$("#current_education_status"+id).hide();
@@ -350,7 +350,7 @@ $(document).ready(function(){
 									<label for="education_status[{{row-count-placeholder}}]">Education Status</label>
 										<select class="education_status form-control" id="education_status[{{row-count-placeholder}}]" data-id="{{row-count-placeholder}}" name="education_status[{{row-count-placeholder}}]">
 											<option selected="" value="">--Education Status--</option>
-											<option value="Studing">Studing</option>
+											<option value="Studying">Studying</option>
 											<option value="Completed">Completed</option>
 										</select>
 										<input type="text" value="" class="form-control" id="current_education_status{{row-count-placeholder}}" name="current_education_status[{{row-count-placeholder}}]" style="display: none"/>
