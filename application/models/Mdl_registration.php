@@ -19,23 +19,23 @@ Class Mdl_registration extends CI_Model{
 		$id=$this->db->insert_id();
 		return $id;
 	}
-        public function getAllparentUsers(){
-            $this->db->where('parent_id',0);
-            $query=$this->db->get('users');
-            $result=$query->result_array();
-            return $result;
-        }
-        public function getUserById($id){
-            $this->db->where('id',$id);
-            $query=$this->db->get('users');
-            $result=$query->row_array();
-            return $result;
-        }
-        public function getUserByParentId($id){
-            $this->db->where('parent_id',$id);
-            $query=$this->db->get('users');
-            $result=$query->result_array();
-            return $result;
-        }
+	public function getAllparentUsers(){
+		$this->db->where('parent_id',0);
+		$query=$this->db->get('users');
+		$result=$query->result_array();
+		return $result;
+	}
+	public function getUserById($id){
+		$this->db->where('id',$id);
+		$query=$this->db->get('users');
+		$result=$query->row_array();
+		return $result;
+	}
+	public function getUserByParentId($id){
+		$this->db->where('parent_id',$id);
+		$query=$this->db->get('users');
+		$result=$query->result_array();
+		return $result;
+	}
 }
 ?>
