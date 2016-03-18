@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="<?php echo base_url('dist/cropper.min.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('css/main.css'); ?>">
 <script src="<?php echo base_url('js/repeatable-fields.js'); ?>"></script>
 <style>
     .repeaterheader {
@@ -7,7 +9,6 @@
         font-weight: bold;
     }
 	.acc{
-		//background-color: azure;
 		padding-bottom: 15px;
 		padding-top: 20px;
 		margin-top: 15px;
@@ -112,14 +113,14 @@ $(document).ready(function(){
 					$(this).rules("add", {
 						required: true,
 					});	
-				});					
+				});		
 			}
 		});
 	});	
 	$('body').on('click','a.showhide',function(){
 		$(this).parent().parent().find('.acc').toggle();
 		return false;
-	})
+	});
 	function getdistrict(stateval,element){
 		$.ajax({
 			url:"<?php echo base_url('registration/getDistrict'); ?>",
@@ -180,7 +181,7 @@ $(document).ready(function(){
 	});
 });
 </script>
-<div class="container">
+<div class="container" id="crop-avatar">
 	<div class="row">
 		<div class="box orange-bg">
 			<div class="col-lg-12 text-center bg-transpernt">
@@ -593,7 +594,7 @@ $(document).ready(function(){
 									</div>
 								</div>
 							</div>
-							
+							  
 							<div class="row custom-marging-top">
 								<div class="form-group col-md-4 custom-marging-right">
 									<span class="add"><span>Add</span></span>

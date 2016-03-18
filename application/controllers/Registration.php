@@ -87,12 +87,17 @@ class Registration extends CI_Controller {
                     $current_district=$per_district;
                     $current_taluka=$per_taluka;
                 }
+                //profile picture
+                
+                $profile_picture=$this->input->post('profie_picture');
+                $profile_picture=str_replace('uploads/profile/', '', $profile_picture);
+
 		$insertdata=array(
 			'first_name'=>$first_name,
 			'middle_name'=>$middle_name,
 			'last_name'=>$last_name,
 			'marital'=>$marital,
-            'gender'=>$gender,
+                        'gender'=>$gender,
 			'education'=>$education,
 			'education_status'=>$education_status,
 			'current_education_status'=>$current_education_status,
@@ -119,7 +124,8 @@ class Registration extends CI_Controller {
 			'current_city'=>$current_city,
 			'current_district'=>$current_district,
 			'current_taluka'=>$current_taluka,
-			'created'=>date('Y-m-d h:i:s')
+			'created'=>date('Y-m-d h:i:s'),
+                        'profile_picture'=>$profile_picture
 		);	
 		$id=$this->mdl_registration->add($insertdata);
 		//redirect user to add family member screen

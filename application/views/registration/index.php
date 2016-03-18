@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="<?php echo base_url('dist/cropper.min.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('css/main.css'); ?>">
 <script>
 $(document).ready(function(){
 	$("#userregistration").validate({
@@ -122,6 +124,11 @@ $(document).ready(function(){
 		else
 			$(".currentaddress").fadeIn();
 	});
+        $(".picture").click(function(){
+            var location=$(this).attr('data-location');
+            $("#location").val(location);
+           
+        });
 	function getdistrict(stateval,element){
 		$.ajax({
 			url:"<?php echo base_url('registration/getDistrict'); ?>",
@@ -144,7 +151,7 @@ $(document).ready(function(){
 	}
 });
 </script>
-<div class="container">
+<div class="container" id="crop-avatar">
 	<div class="row">
 		<div class="box orange-bg">
 			<div class="col-lg-12 text-center bg-transpernt">
@@ -507,6 +514,20 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
+                                        <div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title text-left">Profile Picture</h3>
+						</div>				  
+						<div class="panel-body">
+								<div class="form-group col-md-4 text-left">
+									<label for="per_housenumber">Profile Pic</label>
+									 <div class="avatar-view" title="Change the avatar">
+                                                                            <img src="<?php echo base_url('img/blankAvatar.jpg'); ?>" alt="Avatar" class="picture" data-location="profile_picture">
+                                                                          </div>
+                                                                        <input type="hidden" class="profile_picture" name="profie_picture" id="profile_picture" value=""/>
+								</div>
+						</div>
+					</div>
 					<div class="row">
 						<div class="col-md-3">
 							<input type="submit" name="submit" id="register" class="form-control" value="Save &amp; Continue">
@@ -516,6 +537,70 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
+     <!-- Cropping modal -->
+    <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <form class="avatar-form" action="<?php echo base_url('crop.php'); ?>" enctype="multipart/form-data" method="post">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title" id="avatar-modal-label">Change Avatar</h4>
+            </div>
+            <div class="modal-body">
+              <div class="avatar-body">
+
+                <!-- Upload image and data -->
+                <div class="avatar-upload">
+                  <input type="hidden" class="avatar-src" name="avatar_src">
+                  <input type="hidden" class="avatar-data" name="avatar_data">
+                  <input type="hidden" id="location" name="location" value="">
+                  <label for="avatarInput">Local upload</label>
+                  <input type="file" class="avatar-input" id="avatarInput" name="avatar_file">
+                </div>
+
+                <!-- Crop and preview -->
+                <div class="row">
+                  <div class="col-md-9">
+                    <div class="avatar-wrapper"></div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="avatar-preview preview-lg"></div>
+                    <div class="avatar-preview preview-md"></div>
+                    <div class="avatar-preview preview-sm"></div>
+                  </div>
+                </div>
+
+                <div class="row avatar-btns">
+                  <div class="col-md-9">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-primary" data-method="rotate" data-option="-90" title="Rotate -90 degrees">Rotate Left</button>
+                      <button type="button" class="btn btn-primary" data-method="rotate" data-option="-15">-15deg</button>
+                      <button type="button" class="btn btn-primary" data-method="rotate" data-option="-30">-30deg</button>
+                      <button type="button" class="btn btn-primary" data-method="rotate" data-option="-45">-45deg</button>
+                    </div>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-primary" data-method="rotate" data-option="90" title="Rotate 90 degrees">Rotate Right</button>
+                      <button type="button" class="btn btn-primary" data-method="rotate" data-option="15">15deg</button>
+                      <button type="button" class="btn btn-primary" data-method="rotate" data-option="30">30deg</button>
+                      <button type="button" class="btn btn-primary" data-method="rotate" data-option="45">45deg</button>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary btn-block avatar-save">Done</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div> -->
+          </form>
+        </div>
+      </div>
+    </div><!-- /.modal -->
+
+    <!-- Loading state -->
+    <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 </div>
 <!-- /.container -->
 <button id="matrimonialform" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" style="display: none">Large modal</button>
@@ -526,3 +611,5 @@ $(document).ready(function(){
     </div>
   </div>
 </div>
+<script src="<?php echo base_url('dist/cropper.min.js');?>"></script>
+<script src="<?php echo base_url('js/main.js'); ?>"></script>
