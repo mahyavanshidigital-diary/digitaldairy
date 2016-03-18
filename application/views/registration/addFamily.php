@@ -26,6 +26,15 @@ $(document).ready(function(){
 		else
 			$("#other_education_"+id).hide();
 	});
+	$("body").on("change",".education_status",function(){
+		var val=$(this).val();
+					var id=$(this).attr('data-id');
+				   
+		if(val=="Studing")
+			$("#current_education_status"+id).show();
+		else
+			$("#current_education_status"+id).hide();
+	});
 	//per_state
 	$("body").on("change",".per_state",function(){
 		var val=$(this).val();
@@ -246,7 +255,8 @@ $(document).ready(function(){
 									</div>
 								</div>
 								<div class="clearfix"></div>
-								<div class="form-group col-md-4 text-left">
+								<div class="form-group col-md-12 text-left">
+								<div class="col-md-3">
 									<label for="education[{{row-count-placeholder}}]">Education</label>
 										<select class="education form-control" id="education[{{row-count-placeholder}}]" data-id="{{row-count-placeholder}}" name="education[{{row-count-placeholder}}]">
 											<option selected="" value="Any">Any</option>
@@ -336,7 +346,16 @@ $(document).ready(function(){
 										</select>
 										<input type="text" value="" class="form-control" id="other_education_{{row-count-placeholder}}" name="other_education[{{row-count-placeholder}}]" style="display: none"/>
 								</div>
-								<div class="form-group col-md-4 text-left">
+								<div class="col-md-3">
+									<label for="education_status[{{row-count-placeholder}}]">Education Status</label>
+										<select class="education_status form-control" id="education_status[{{row-count-placeholder}}]" data-id="{{row-count-placeholder}}" name="education_status[{{row-count-placeholder}}]">
+											<option selected="" value="">--Education Status--</option>
+											<option value="Studing">Studing</option>
+											<option value="Completed">Completed</option>
+										</select>
+										<input type="text" value="" class="form-control" id="current_education_status{{row-count-placeholder}}" name="current_education_status[{{row-count-placeholder}}]" style="display: none"/>
+								</div>
+								<div class="col-md-3">
 									<label for="home_own[{{row-count-placeholder}}]">Home</label>
 									 <div class="checkbox">
 										<label>
@@ -348,7 +367,7 @@ $(document).ready(function(){
 									</div>
 								</div>
 							
-								<div class="form-group col-md-4 text-left">
+								<div class="col-md-3">
 									<label for="occupation_business[{{row-count-placeholder}}]">Occupation</label>
 									 <div class="checkbox">
 										<label>
@@ -358,6 +377,7 @@ $(document).ready(function(){
 										<input type="radio" name="occupation[{{row-count-placeholder}}]" value="job" id="occupation_job[{{row-count-placeholder}}]" checked=""> Job
 										</label>
 									</div>
+								</div>
 								</div>
 								<div class="clearfix"></div>
 								<div class="form-group col-md-8 text-left">

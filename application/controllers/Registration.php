@@ -35,6 +35,8 @@ class Registration extends CI_Controller {
 		$education=$this->input->post('education');
 		if($education=="other")
 			$education=$this->input->post('other_education');
+		$education_status=$this->input->post('education_status');
+		$current_education_status=$this->input->post('current_education_status');
 		$home=$this->input->post('home');
 		$occupation=$this->input->post('occupation');
 		$birthdate_date=$this->input->post('birthdate_date');
@@ -92,6 +94,8 @@ class Registration extends CI_Controller {
 			'marital'=>$marital,
             'gender'=>$gender,
 			'education'=>$education,
+			'education_status'=>$education_status,
+			'current_education_status'=>$current_education_status,
 			'home'=>$home,
 			'occupation'=>$occupation,
 			'birthdate'=>$birthdate_year.'-'.$birthdate_month.'-'.$birthdate_date,
