@@ -8,20 +8,25 @@ $(document).ready(function(){
 			birthdate_date:'required',
 			birthdate_month:'required',
 			birthdate_year:'required',
-			mobile_number:{
-				required:true,
-				remote:{
+			mobile_number:'required',
+			email:'email'
+		}
+	});
+	$("#mobile_number").change(function(){
+		$(this).rules("checkmobile", {
+			remote:{
 					url:'<?php echo base_url("user/checkmobile"); ?>',
 					type:'post',
 					data:{
 						mobile:function(){
 							return $("#mobile_number").val();
+						},
+						id:function(){
+							return $("#id").val();
 						}
 					}		
 				}
-			},
-			email:'email'
-		}
+		});	
 	});
 	$("#education").change(function(){
 		var val=$(this).val();
@@ -38,7 +43,7 @@ $(document).ready(function(){
 			$("#current_education_status").hide();
 	});
 	
-	//per_state
+	//state
 	var per_state_val = $("#per_state").val();
 	if(per_state_val != '')
 	{
@@ -55,7 +60,7 @@ $(document).ready(function(){
 	var current_state_val = $("#current_state").val();
 	if(current_state_val != '')
 	{
-		getdistrict(current_state_val,"current_district");
+		getdistrictcurrent(current_state_val,"current_district");
 	}
 	$("#current_state").change(function(){
 		var val=$(this).val();
@@ -63,14 +68,9 @@ $(document).ready(function(){
 			$("#other_current_state").show();
 		else
 			$("#other_current_state").hide();			
-		getdistrict(val,"current_district");
+		getdistrictcurrent(val,"current_district");
 	});
-	//per_state
-	var per_district_val = $("#per_district").val();
-	if(per_district_val != '')
-	{
-		getdistrict(per_district_val,"per_taluka");
-	}
+	//district
 	$("#per_district").change(function(){
 		var val=$(this).val();
 		if(val=="other")
@@ -80,21 +80,16 @@ $(document).ready(function(){
 		gettaluka(val,"per_taluka");
 
 	});
-	var current_district_val = $("#current_district").val();
-	if(current_district_val != '')
-	{
-		getdistrict(current_district_val,"current_taluka");
-	}
 	$("#current_district").change(function(){
 		var val=$(this).val();
 		if(val=="other")
 			$("#other_current_district").show();
 		else
 			$("#other_current_district").hide();
-		gettaluka(val,"current_taluka");
+		gettalukacurrent(val,"current_taluka");
 
 	});
-	//other_per_taluka
+	//taluka
 	$("#per_taluka").change(function(){
 		var val=$(this).val();
 		if(val=="other")
@@ -143,20 +138,46 @@ $(document).ready(function(){
 			$(".currentaddress").fadeIn();
 	});
 	function getdistrict(stateval,element){
+		var id=$("#id").val();
 		$.ajax({
 			url:"<?php echo base_url('user/getDistrict'); ?>",
 			type:'post',
-			data:{state:stateval},
+			data:{state:stateval,id:id},
+			success:function(response){
+				$("#"+element).html(response);
+				$("#per_district").change();
+			}
+		});
+	}
+	function gettaluka(stateval,element){
+		var id=$("#id").val();
+		$.ajax({
+			url:"<?php echo base_url('user/getTaluka'); ?>",
+			type:'post',
+			data:{district:stateval,id:id},
 			success:function(response){
 				$("#"+element).html(response);
 			}
 		});
 	}
-	function gettaluka(stateval,element){
+	function getdistrictcurrent(stateval,element){
+		var id=$("#id").val();
 		$.ajax({
-			url:"<?php echo base_url('user/getTaluka'); ?>",
+			url:"<?php echo base_url('user/getDistrictcurrent'); ?>",
 			type:'post',
-			data:{district:stateval},
+			data:{state:stateval,id:id},
+			success:function(response){
+				$("#"+element).html(response);
+				$("#current_district").change();
+			}
+		});
+	}
+	function gettalukacurrent(stateval,element){
+		var id=$("#id").val();
+		$.ajax({
+			url:"<?php echo base_url('user/getTalukacurrent'); ?>",
+			type:'post',
+			data:{district:stateval,id:id},
 			success:function(response){
 				$("#"+element).html(response);
 			}

@@ -134,22 +134,30 @@ class User extends CI_Controller {
 			$this->load->view('template/front',$data);
 		}
 	}
-	function checkmobile()
-	{
-		$mobile=$this->input->post('mobile');
-		if(empty($mobile)){
-			//check for the another
-			$mobilearr=$this->input->post('mobile_number');
-			$mobile=end($mobilearr);
-		}
-		$user=$this->mdl_user->findByMobile($mobile);
-		if(empty($user))
-			echo json_encode(TRUE);
-		else
-			echo json_encode(FALSE);
-	}
+	function checkmobile() {
+        if (array_key_exists('mobile_number', $_POST)) {
+            if ($this->mobile_exists($this->input->post('mobile_number'),$this->input->post('id')) == TRUE) {
+                echo json_encode(FALSE);
+            } else {
+                echo json_encode(TRUE);
+            }
+        }
+    }
+
+    function mobile_exists($mobile_number,$id) {
+        $this->db->where('mobile_number', $mobile_number);
+		$this->db->where('id <>',$id);
+        $query = $this->db->get('users');
+        if ($query->num_rows() > 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
 	function getDistrict()
 	{
+		$id=$this->input->post('id');
+		$user=$this->mdl_user->getUserDetail($id);
 		$statename=$this->input->post('state');
 		$districts=$this->mdl_state->getDistrictByStateName($statename);
 		?>
@@ -157,7 +165,7 @@ class User extends CI_Controller {
 		<?php
 		foreach($districts as $district){
 			?>
-			<option value="<?php echo $district['districts_name']; ?>"><?php echo $district['districts_name']; ?></option>
+			<option value="<?php echo $district['districts_name']; ?>" <?php echo($user['per_district'] == $district['districts_name']) ? "selected":""; ?>><?php echo $district['districts_name']; ?></option>
 			<?php
 		}
 		?>
@@ -165,6 +173,8 @@ class User extends CI_Controller {
 		<?php
 	}
 	function getTaluka(){
+		$id=$this->input->post('id');
+		$user=$this->mdl_user->getUserDetail($id);
 		$district=$this->input->post('district');
 		$districts=$this->mdl_state->getTalukaByDistrictName($district);
 		?>
@@ -172,7 +182,42 @@ class User extends CI_Controller {
 		<?php
 		foreach($districts as $district){
 			?>
-			<option value="<?php echo $district['taluka_name']; ?>"><?php echo $district['taluka_name']; ?></option>
+			<option value="<?php echo $district['taluka_name']; ?>" <?php echo($user['per_taluka'] == $district['taluka_name']) ? "selected":""; ?>><?php echo $district['taluka_name']; ?></option>
+			<?php
+		}
+		?>
+		<option value="other">Other</option>
+		<?php
+	}
+	function getDistrictcurrent()
+	{
+		$id=$this->input->post('id');
+		$user=$this->mdl_user->getUserDetail($id);
+		$statename=$this->input->post('state');
+		$districts=$this->mdl_state->getDistrictByStateName($statename);
+		?>
+		<option value="">--District--</option>
+		<?php
+		foreach($districts as $district){
+			?>
+			<option value="<?php echo $district['districts_name']; ?>" <?php echo($user['current_district'] == $district['districts_name']) ? "selected":""; ?>><?php echo $district['districts_name']; ?></option>
+			<?php
+		}
+		?>
+		<option value="other">Other</option>
+		<?php
+	}
+	function getTalukacurrent(){
+		$id=$this->input->post('id');
+		$user=$this->mdl_user->getUserDetail($id);
+		$district=$this->input->post('district');
+		$districts=$this->mdl_state->getTalukaByDistrictName($district);
+		?>
+		<option value="">--District--</option>
+		<?php
+		foreach($districts as $district){
+			?>
+			<option value="<?php echo $district['taluka_name']; ?>" <?php echo($user['current_taluka'] == $district['taluka_name']) ? "selected":""; ?>><?php echo $district['taluka_name']; ?></option>
 			<?php
 		}
 		?>
