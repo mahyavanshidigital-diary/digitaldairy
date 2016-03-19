@@ -5,8 +5,10 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
+                $error=$this->session->flashdata('loginerror');
 		$data=array(
 			'main_content'=>'home/home',
+                        'error'=>$error
 		);
 		$this->load->view('template/front',$data);
 	}

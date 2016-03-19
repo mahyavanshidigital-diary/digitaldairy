@@ -6,6 +6,20 @@ class User extends CI_Controller {
 		$this->load->model('mdl_user');
 		$this->load->model('mdl_state');
 	}
+        public function login(){
+            $mobilenumber=$this->input->post('mobilenumber');
+            $password=$this->input->post('password');
+            $user=$this->mdl_user->checkuser($mobilenumber,$password);
+            if(!empty($user)){
+                //authorized
+                redirect('user/profile');
+            }
+            else
+            {
+                $this->session->set_flashdata('loginerror','Invalid Mobile Number or Password');
+                redirect('home');
+            }
+        }
 	public function index()
 	{
 		//get all state information

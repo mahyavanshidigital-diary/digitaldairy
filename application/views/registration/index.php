@@ -10,6 +10,7 @@ $(document).ready(function(){
 			birthdate_date:'required',
 			birthdate_month:'required',
 			birthdate_year:'required',
+                        password:'required',
 			mobile_number:{
 				required:true,
 				remote:{
@@ -398,6 +399,10 @@ $(document).ready(function(){
 					<div class="form-group col-md-4 text-left">
 						<label for="email">Email Address</label>
 						<input type="email" class="form-control" id="email" name="email">
+					</div>
+                                        <div class="form-group col-md-4 text-left">
+						<label for="password">Password</label>
+						<input type="password" class="form-control" id="password" name="password">
 					</div>
 					<div class="clearfix"></div>
 					<div class="panel panel-default">

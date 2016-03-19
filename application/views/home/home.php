@@ -45,14 +45,17 @@
                     <strong>Member Login</strong>
                 </h2>
                 <hr>
-                <form class="col-md-8 col-md-offset-2">
+                <form class="col-md-8 col-md-offset-2" name="login" method="post" action="<?php echo base_url('user/login'); ?>">
+                    <?php if(!empty($error)) { ?>
+                    <span><?php echo $error; ?></span>
+                    <?php } ?>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                        <label for="exampleInputEmail1">Mobile Number</label>
+                        <input type="text" class="form-control" name="mobilenumber" id="mobilenumber" placeholder="Mobile Number">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                     </div>
                     
                     <button type="submit" class="btn btn-default">Login</button>

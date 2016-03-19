@@ -20,5 +20,12 @@ Class Mdl_user extends CI_Model{
 		$result=$query->row_array();
 		return $result;
 	}
+        public function checkuser($mobilenumber,$password){
+            $this->db->where('mobile_number',$mobilenumber);
+            $this->db->where('password',$password);
+            $query=$this->db->get('users');
+            $row=$query->row_array();
+            return $row;
+        }
 }
 ?>

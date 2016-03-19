@@ -91,7 +91,8 @@ class Registration extends CI_Controller {
                 
                 $profile_picture=$this->input->post('profie_picture');
                 $profile_picture=str_replace('uploads/profile/', '', $profile_picture);
-
+                //password
+                $password=$this->input->post('password');
 		$insertdata=array(
 			'first_name'=>$first_name,
 			'middle_name'=>$middle_name,
@@ -125,7 +126,8 @@ class Registration extends CI_Controller {
 			'current_district'=>$current_district,
 			'current_taluka'=>$current_taluka,
 			'created'=>date('Y-m-d h:i:s'),
-                        'profile_picture'=>$profile_picture
+                        'profile_picture'=>$profile_picture,
+                        'password'=>$password,
 		);	
 		$id=$this->mdl_registration->add($insertdata);
 		//redirect user to add family member screen
