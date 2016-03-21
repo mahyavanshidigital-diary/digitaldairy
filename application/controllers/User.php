@@ -5,30 +5,54 @@ class User extends CI_Controller {
 		parent::__construct();
 		$this->load->model('mdl_user');
 		$this->load->model('mdl_state');
+		$this->load->library('session');  //Load the Session;
 	}
-        public function login(){
-            $mobilenumber=$this->input->post('mobilenumber');
-            $password=$this->input->post('password');
-            $user=$this->mdl_user->checkuser($mobilenumber,$password);
-            if(!empty($user)){
-                //authorized
-                redirect('user/profile');
-            }
-            else
-            {
-                $this->session->set_flashdata('loginerror','Invalid Mobile Number or Password');
-                redirect('home');
-            }
-        }
+	public function login()
+	{
+		$mobilenumber=$this->input->post('mobilenumber');
+		$password=$this->input->post('password');
+		$user=$this->mdl_user->checkuser($mobilenumber,$password);
+		if(!empty($user))
+		{
+			$this->session->set_userdata('user_id',$user['id']);
+			$this->session->set_userdata('first_name',$user['first_name']);
+			redirect('user/index');
+		}
+		else
+		{
+			$this->session->set_flashdata('loginerror','Invalid Mobile Number or Password');
+			redirect('home');
+		}
+	}
+	function logout()
+	{
+        $this->session->unset_userdata('user_id');
+        redirect('home');
+
+	} 
 	public function index()
 	{
 		//get all state information
 		$states=$this->mdl_state->getAll();
+		$user_id =  $this->session->userdata['user_id'];
+		$users=$this->mdl_user->getAllUsersFamily($user_id);
+		
 		$data=array(
 			'main_content'=>'user/index',
-			'states'=>$states
+			'states'=>$states,
+			'users'=>$users
 		);
 		$this->load->view('template/front',$data);
+	}
+	public function matrimonial()
+	{
+		//get all state information
+		$states=$this->mdl_state->getAll();
+		$data=array(
+			'main_content'=>'registration/matrimonial',
+			'states'=>$states
+		);
+		$this->load->view('template/popup',$data);
 	}
 	public function edit($id)
 	{
@@ -97,6 +121,10 @@ class User extends CI_Controller {
 				$current_district=$per_district;
 				$current_taluka=$per_taluka;
 			}
+			 //profile picture
+                
+			$profile_picture=$this->input->post('profie_picture');
+			$profile_picture=str_replace('uploads/profile/', '', $profile_picture);
 			$updatedata=array(
 				'first_name'=>$first_name,
 				'middle_name'=>$middle_name,
@@ -130,10 +158,12 @@ class User extends CI_Controller {
 				'current_district'=>$current_district,
 				'current_taluka'=>$current_taluka,
 				'updated'=>date('Y-m-d h:i:s'),
+				'profile_picture'=>$profile_picture,
 			);	
 			$this->mdl_user->update($updatedata, $id);
 			//redirect user to add family member screen
-			redirect('/user/edit/'.$id);
+			//redirect('/user/edit/'.$id);
+			redirect('/user/index');
 		}
 		else
 		{

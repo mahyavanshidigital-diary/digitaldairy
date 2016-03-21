@@ -10,6 +10,14 @@ Class Mdl_user extends CI_Model{
 		$result=$query->row_array();
 		return $result;
 	}
+	public function getAllUsersFamily($id){
+		$where = "id='".$id."' OR parent_id='".$id."'";
+		$this->db->where($where);
+		$this->db->order_by('id','DESC');
+		$query=$this->db->get('users');
+		$result=$query->result_array();
+		return $result;
+	}
 	public function update($data, $id){
 		$this->db->where('id', $id);
 		$this->db->update('users',$data);
@@ -20,12 +28,12 @@ Class Mdl_user extends CI_Model{
 		$result=$query->row_array();
 		return $result;
 	}
-        public function checkuser($mobilenumber,$password){
-            $this->db->where('mobile_number',$mobilenumber);
-            $this->db->where('password',$password);
-            $query=$this->db->get('users');
-            $row=$query->row_array();
-            return $row;
-        }
+	public function checkuser($mobilenumber,$password){
+		$this->db->where('mobile_number',$mobilenumber);
+		$this->db->where('password',$password);
+		$query=$this->db->get('users');
+		$row=$query->row_array();
+		return $row;
+	}
 }
 ?>
