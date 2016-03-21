@@ -27,7 +27,12 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <script>
+        var base_url="<?php echo base_url(); ?>";
+    </script>
+	<!-- jQuery -->
+	<script src="<?php echo base_url() ?>js/jquery.js"></script>
+	<script src="<?php echo base_url() ?>js/jquery.validate.js"></script>
 </head>
 
 <body>

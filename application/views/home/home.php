@@ -45,14 +45,17 @@
                     <strong>Member Login</strong>
                 </h2>
                 <hr>
-                <form class="col-md-8 col-md-offset-2">
+                <form class="col-md-8 col-md-offset-2" name="login" method="post" action="<?php echo base_url('user/login'); ?>">
+                    <?php if(!empty($error)) { ?>
+                    <span><?php echo $error; ?></span>
+                    <?php } ?>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                        <label for="exampleInputEmail1">Mobile Number</label>
+                        <input type="text" class="form-control" name="mobilenumber" id="mobilenumber" placeholder="Mobile Number">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                     </div>
                     
                     <button type="submit" class="btn btn-default">Login</button>
@@ -457,6 +460,22 @@
                         <label for="exampleInputEmail1">Education:</label>
                         <select class="form-control">
                             <option selected="" value="Any">Any</option>
+							<option value="Std 1">Std 1</option>
+							<option value="Std 2">Std 2</option>
+							<option value="Std 3">Std 3</option>
+							<option value="Std 4">Std 4</option>
+							<option value="Std 5">Std 5</option>
+							<option value="Std 6">Std 6</option>
+							<option value="Std 7">Std 7</option>
+							<option value="Std 8">Std 8</option>
+							<option value="Std 9">Std 9</option>
+							<option value="Std 10">Std 10</option>
+							<option value="Std 11 - Science">Std 11 - Science</option>
+							<option value="Std 12 - Science">Std 12 - Science</option>
+							<option value="Std 11 - Commerce">Std 11 - Commerce</option>
+							<option value="Std 12 - Commerce">Std 12 - Commerce</option>
+							<option value="Std 11 - Arts">Std 11 - Arts</option>
+							<option value="Std 12 - Arts">Std 12 - Arts</option>
                             <option value="Applied Art">Applied Art</option>
                             <option value="Architect/Interior Decorator">Architect/Interior Decorator</option>
                             <option value="B. Architect">B. Architect</option>

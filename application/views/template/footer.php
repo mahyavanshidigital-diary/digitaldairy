@@ -26,22 +26,22 @@
                     
                     <li>
                         <a href="">
-                            <img src="img/Facebook.png">
+                            <img src="<?php echo base_url() ?>img/Facebook.png">
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <img src="img/GooglePlus.png">
+                            <img src="<?php echo base_url() ?>img/GooglePlus.png">
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <img src="img/Instagram.png">
+                            <img src="<?php echo base_url() ?>img/Instagram.png">
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <img src="img/Twitter.png">
+                            <img src="<?php echo base_url() ?>img/Twitter.png">
                         </a>
                     </li>
                 </ul>
@@ -54,10 +54,7 @@
             </div>
         </div>
     </footer>
-    
-    <!-- jQuery -->
-    <script src="<?php echo base_url() ?>js/jquery.js"></script>
-    
+  
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
     
