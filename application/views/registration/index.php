@@ -10,7 +10,6 @@ $(document).ready(function(){
 			birthdate_date:'required',
 			birthdate_month:'required',
 			birthdate_year:'required',
-                        password:'required',
 			mobile_number:{
 				required:true,
 				remote:{
@@ -35,12 +34,20 @@ $(document).ready(function(){
 	});
 	$("#education_status").change(function(){
 		var val=$(this).val();
-		if(val=="Studying")
+		if(val=="Studying"){
 			$("#current_education_status").show();
+                        $("#occupation").val("Student");
+                }
 		else
 			$("#current_education_status").hide();
 	});
-	
+	$("#occupation").change(function(){
+            var val=$(this).val();
+            if(val=="Other")
+                $("#other_occupation").show();
+            else
+                $("#other_occupation").hide();
+        });
 	//per_state
 	$("#per_state").change(function(){
 		var val=$(this).val();
@@ -190,17 +197,14 @@ $(document).ready(function(){
 						</div>
 						<div class="col-md-3">
 							<label for="last_name">Marital Status</label>
-							<div class="checkbox">
-								<label>
-								  <input class="marital" type="radio" value="single" name="marital" id="marital_single" checked=""> Single
-								</label>
-								<label>
-									<input class="marital" type="radio" value="merried" name="marital" id="marital_merried"> Merried
-								</label>
-								<label>
-									<input class="marital" type="radio" value="divorcy" name="marital" id="martial_divorcy"> Divorcy
-								</label>
-							</div>
+                                                        <select class="form-control marital" id="marital" name="marital">
+                                                            <option value="">-------Occupation------</option>
+                                                            <option value="single">Single</option>
+                                                            <option value="merried">Merried</option>
+                                                            <option value="divorcy">Divorcy</option>
+                                                            <option value="widow">Widow</option>
+                                                            <option value="Other">Other</option>
+                                                        </select>
 						</div>
 						<div class="col-md-3">
 							<label for="education">Education</label>
@@ -315,14 +319,15 @@ $(document).ready(function(){
 					</div>
 					<div class="form-group col-md-4 text-left">
 						<label for="occupation_business1">Occupation</label>
-						<div class="checkbox">
-							<label>
-							  <input type="radio" name="occupation" value="business" id="occupation_business"> Business
-							</label>
-							<label>
-							 <input type="radio" name="occupation" value="job" id="occupation_job" checked=""> Job
-							</label>
-						</div>
+                                                <select class="form-control" id="occupation" name="occupation">
+							<option value="">-------Occupation------</option>
+							<option value="Doctor">Doctor</option>
+							<option value="Layer">Layer</option>
+							<option value="Teacher">Teacher</option>
+							<option value="Student">Student</option>
+							<option value="Other">Other</option>
+						</select>
+						<input type="text" value="" class="form-control" id="other_occupation" name="other_occupation" style="display: none;">
 					</div>
 					<div class="form-group col-md-4 text-left">
 						<label for="annualincome_below_1">Annunal Income Group</label>
@@ -400,10 +405,7 @@ $(document).ready(function(){
 						<label for="email">Email Address</label>
 						<input type="email" class="form-control" id="email" name="email">
 					</div>
-                                        <div class="form-group col-md-4 text-left">
-						<label for="password">Password</label>
-						<input type="password" class="form-control" id="password" name="password">
-					</div>
+                                        
 					<div class="clearfix"></div>
 					<div class="panel panel-default">
 						<div class="panel-heading text-left"><h3 class="panel-title">Permanant Address</h3></div>
@@ -414,11 +416,11 @@ $(document).ready(function(){
 							</div>
 							<div class="form-group col-md-4 text-left">
 								<label for="per_society">Society</label>
-								<input type="text" class="form-control" id="per_society" name="per_society" placeholder="House No">
+								<input type="text" class="form-control" id="per_society" name="per_society" placeholder="Society">
 							</div>
 							<div class="form-group col-md-4 text-left">
 								<label for="per_area">Area</label>
-								<input type="text" class="form-control" id="per_area" name="per_area" placeholder="House No">
+								<input type="text" class="form-control" id="per_area" name="per_area" placeholder="Area">
 							</div>
 							<div class="clearfix"></div>
 							<div class="form-group col-md-4 text-left">
@@ -475,11 +477,11 @@ $(document).ready(function(){
 								</div>
 								<div class="form-group col-md-4 text-left">
 									<label for="per_society">Society</label>
-									<input type="text" class="form-control" id="current_society" name="current_society" placeholder="House No">
+									<input type="text" class="form-control" id="current_society" name="current_society" placeholder="Society">
 								</div>
 								<div class="form-group col-md-4 text-left">
 									<label for="per_area">Area</label>
-									<input type="text" class="form-control" id="current_area" name="current_area" placeholder="House No">
+									<input type="text" class="form-control" id="current_area" name="current_area" placeholder="Area">
 								</div>
 								<div class="clearfix"></div>
 								<div class="form-group col-md-4 text-left">

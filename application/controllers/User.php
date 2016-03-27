@@ -5,6 +5,7 @@ class User extends CI_Controller {
 		parent::__construct();
 		$this->load->model('mdl_user');
 		$this->load->model('mdl_state');
+                $this->load->model('mdl_registration');
 		$this->load->library('session');  //Load the Session;
 	}
 	public function login()
@@ -26,10 +27,29 @@ class User extends CI_Controller {
 	}
 	function logout()
 	{
-        $this->session->unset_userdata('user_id');
-        redirect('home');
-
+            $this->session->unset_userdata('user_id');
+            redirect('home');
 	} 
+        function profile($id){
+            //get the profile
+            $profile=$this->mdl_registration->getUserById($id);
+            //check if this is a parent
+            if($profile['parent_id']==0 || empty($profile['parent_id'])){
+                $members=$this->mdl_registration->getUserByParentId($profile['id']);
+                $parent=false;
+            }
+            else{
+                $parent=$this->mdl_registration->getUserById($profile['parent_id']);
+                $members=$this->mdl_registration->getUserByParentId($parent['id']);
+            }
+            	$data=array(
+			'main_content'=>'user/profile',
+			'profile'=>$profile,
+                        'parent'=>$parent,
+                        'members'=>$members,
+		);
+		$this->load->view('template/front',$data);
+        }
 	public function index()
 	{
 		//get all state information

@@ -30,7 +30,7 @@ class Registration extends CI_Controller {
 		$first_name=$this->input->post('first_name');
 		$middle_name=$this->input->post('middle_name');
 		$last_name=$this->input->post('last_name');
-        $gender=$this->input->post('gender');
+                $gender=$this->input->post('gender');
 		$marital=$this->input->post('marital');
 		$education=$this->input->post('education');
 		if($education=="other")
@@ -39,6 +39,8 @@ class Registration extends CI_Controller {
 		$current_education_status=$this->input->post('current_education_status');
 		$home=$this->input->post('home');
 		$occupation=$this->input->post('occupation');
+                if($occupation=="Other")
+			$occupation=$this->input->post('other_occupation');
 		$birthdate_date=$this->input->post('birthdate_date');
 		$birthdate_month=$this->input->post('birthdate_month');
 		$birthdate_year=$this->input->post('birthdate_year');
@@ -91,8 +93,7 @@ class Registration extends CI_Controller {
                 
                 $profile_picture=$this->input->post('profie_picture');
                 $profile_picture=str_replace('uploads/profile/', '', $profile_picture);
-                //password
-                $password=$this->input->post('password');
+                
 		$insertdata=array(
 			'first_name'=>$first_name,
 			'middle_name'=>$middle_name,
@@ -127,13 +128,141 @@ class Registration extends CI_Controller {
 			'current_taluka'=>$current_taluka,
 			'created'=>date('Y-m-d h:i:s'),
                         'profile_picture'=>$profile_picture,
-                        'password'=>$password,
+                
 		);	
 		$id=$this->mdl_registration->add($insertdata);
 		//redirect user to add family member screen
 		redirect('registration/addfamily/'.$id);
 	}
-	function addfamily($id){
+        function addfamily($id){
+           $states=$this->mdl_state->getAll();
+			 $user=$this->mdl_registration->getUserById($id);
+                         $members=$this->mdl_registration->getUserByParentId($id);
+                         if(empty($user))
+                             redirect('home');
+			$data=array(
+					'main_content'=>'registration/addFamily',
+					'states'=>$states,
+					'user'=>$user,
+                                        'members'=>$members
+			);
+			$this->load->view('template/front',$data);
+        }
+        function insertfamily(){
+            	$first_name=$this->input->post('first_name');
+		$middle_name=$this->input->post('middle_name');
+		$last_name=$this->input->post('last_name');
+                $relation=$this->input->post('relation');
+                $parent_id=$this->input->post('parent_id');
+                $gender=$this->input->post('gender');
+		$marital=$this->input->post('marital');
+		$education=$this->input->post('education');
+		if($education=="other")
+			$education=$this->input->post('other_education');
+		$education_status=$this->input->post('education_status');
+		$current_education_status=$this->input->post('current_education_status');
+		$home=$this->input->post('home');
+		$occupation=$this->input->post('occupation');
+                if($occupation=="Other")
+			$occupation=$this->input->post('other_occupation');
+		$birthdate_date=$this->input->post('birthdate_date');
+		$birthdate_month=$this->input->post('birthdate_month');
+		$birthdate_year=$this->input->post('birthdate_year');
+		$mobile_number=$this->input->post('mobile_number');
+		$annualincome=$this->input->post('annualincome');
+		$bloodgroup=$this->input->post('bloodgroup');
+		$email=$this->input->post('email');
+		$per_housenumber=$this->input->post('per_housenumber');
+		$per_society=$this->input->post('per_society');
+		$per_area=$this->input->post('per_area');
+		$per_pincode=$this->input->post('per_pincode');
+		$per_state=$this->input->post('per_state');
+		if($per_state=="other")
+			$per_state=$this->input->post('other_per_state');
+		$per_city=$this->input->post('per_city');
+		$per_district=$this->input->post('per_district');
+		if($per_district=="other")
+			$per_district=$this->input->post('other_per_district');
+		$per_taluka=$this->input->post('per_taluka');
+		if($per_taluka=="other")
+			$per_taluka=$this->input->post('other_per_taluka');
+                $sameasabove=$this->input->post('sameasabove');
+                if(empty($sameasabove)){
+                    $current_housenumber=$this->input->post('current_housenumber');
+                    $current_society=$this->input->post('current_society');
+                    $current_area=$this->input->post('current_area');
+                    $current_pincode=$this->input->post('current_pincode');
+                    $current_state=$this->input->post('current_state');
+                    if($current_state=="other")
+                            $current_state=$this->input->post('other_current_state');
+                    $current_city=$this->input->post('current_city');
+                    $current_district=$this->input->post('current_district');
+                    if($current_district=="other")
+                            $current_district=$this->input->post('other_current_district');
+                    $current_taluka=$this->input->post('current_taluka');
+                    if($current_taluka=="other")
+                            $current_taluka=$this->input->post('other_current_taluka');
+                }
+                else{
+                    $current_housenumber=$per_housenumber;
+                    $current_society=$per_society;
+                    $current_area=$per_area;
+                    $current_pincode=$per_pincode;
+                    $current_state=$per_state;
+                    $current_city=$per_city;
+                    $current_district=$per_district;
+                    $current_taluka=$per_taluka;
+                }
+                //profile picture
+                
+                $profile_picture=$this->input->post('profie_picture');
+                $profile_picture=str_replace('uploads/profile/', '', $profile_picture);
+                
+		$insertdata=array(
+			'first_name'=>$first_name,
+			'middle_name'=>$middle_name,
+			'last_name'=>$last_name,
+			'marital'=>$marital,
+                        'gender'=>$gender,
+			'education'=>$education,
+			'education_status'=>$education_status,
+			'current_education_status'=>$current_education_status,
+			'home'=>$home,
+			'occupation'=>$occupation,
+			'birthdate'=>$birthdate_year.'-'.$birthdate_month.'-'.$birthdate_date,
+			'mobile_number'=>$mobile_number,
+			'annualincome'=>$annualincome,
+			'bloodgroup'=>$bloodgroup,
+			'email'=>$email,
+			'per_housenumber'=>$per_housenumber,
+			'per_society'=>$per_society,
+			'per_area'=>$per_area,
+			'per_pincode'=>$per_pincode,
+			'per_state'=>$per_state,
+			'per_city'=>$per_city,
+			'per_district'=>$per_district,
+			'per_taluka'=>$per_taluka,
+			'current_housenumber'=>$current_housenumber,
+			'current_society'=>$current_society,
+			'current_area'=>$current_area,
+			'current_pincode'=>$current_pincode,
+			'current_state'=>$current_state,
+			'current_city'=>$current_city,
+			'current_district'=>$current_district,
+			'current_taluka'=>$current_taluka,
+			'created'=>date('Y-m-d h:i:s'),
+                        'profile_picture'=>$profile_picture,
+                        'relation'=>$relation,
+                        'parent_id'=>$parent_id
+		);	
+		$this->mdl_registration->add($insertdata);
+		//redirect user to add family member screen
+                $mode=$this->input->post('mode');
+                if($mode=='complete')
+                    redirect('registration/profile/'.$parent_id);
+		redirect('registration/addfamily/'.$parent_id);
+        }
+	function addfamily__old($id){
 		//get all state information
 		if($this->input->post('submit')){
 			//get the post count
