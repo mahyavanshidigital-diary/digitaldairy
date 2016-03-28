@@ -145,7 +145,7 @@ $(document).ready(function(){
            $("#register").click();
         });
         $("#viewprofile").click(function(){
-           window.location.href=base_url+'/registration/prifile/<?php echo $user['id']; ?>';
+           window.location.href=base_url+'/user/prifile/<?php echo $user['id']; ?>';
         });
 	function getdistrict(stateval,element){
 		$.ajax({

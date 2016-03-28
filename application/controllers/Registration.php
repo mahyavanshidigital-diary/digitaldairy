@@ -259,7 +259,7 @@ class Registration extends CI_Controller {
 		//redirect user to add family member screen
                 $mode=$this->input->post('mode');
                 if($mode=='complete')
-                    redirect('registration/profile/'.$parent_id);
+                    redirect('user/profile/'.$parent_id);
 		redirect('registration/addfamily/'.$parent_id);
         }
 	function addfamily__old($id){
